@@ -6,7 +6,7 @@
 
 <GridRow>
     <GridCol Span="6">
-        <Button Type="@ButtonType.Primary" OnClick="MoreThanOnceInstanceModal">
+        <Button Type="@ButtonType.Primary" OnClick="OpenMoreThanOneInstanceModal">
             > 1 Instance
         </Button>
     </GridCol>
@@ -14,3 +14,9 @@
     <GridCol Span="6">col-6</GridCol>
     <GridCol Span="6">col-6</GridCol>
 </GridRow>
+
+@if (_moreThanOneInstanceModal)
+{
+    <Bunit.Demo.Pages.Modals.MoreThanInstanceModal OnClose="CloseMoreThanOneInstanceModal">
+    </Bunit.Demo.Pages.Modals.MoreThanInstanceModal>
+}
