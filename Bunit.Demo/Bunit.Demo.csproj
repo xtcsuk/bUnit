@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="AntDesign" Version="0.15.5" />
+    <PackageReference Include="BackOffice.Shared.UI" Version="2.0.24" />
   </ItemGroup>
 
 </Project>

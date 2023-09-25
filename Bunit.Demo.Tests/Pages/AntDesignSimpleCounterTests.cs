@@ -89,10 +89,11 @@ namespace Bunit.Demo.Tests.Pages
 
             // act
             button.Click();
+            var modalTitleClassDiv = cut.Find(".ant-modal-title");
 
             // assert
             Assert.True(cut.Instance.Showodal);
-            Assert.Contains("Id=\"modalForm\"", cut.Markup);
+            Assert.Contains("Modal example", modalTitleClassDiv.InnerHtml);
         }
     }
 }
