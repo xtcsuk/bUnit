@@ -4,16 +4,22 @@ namespace Bunit.Demo.Pages
 {
     public partial class AntDesignComplexScenarios
     {
-        private bool _moreThanOneInstanceModal = false;
+        public bool Showodal = false;
+        private bool _showPanel = false;
 
-        private void OpenMoreThanOneInstanceModal(MouseEventArgs e)
+        private void OpenModal(MouseEventArgs e)
         {
-            _moreThanOneInstanceModal = true;
+            Showodal = true;
         }
 
-        private void CloseMoreThanOneInstanceModal()
+        private void CloseModal()
         {
-            _moreThanOneInstanceModal = false;
+            Showodal = false;
+        }
+
+        private void ShowPanel()
+        {
+            _showPanel = !_showPanel;
         }
     }
 }

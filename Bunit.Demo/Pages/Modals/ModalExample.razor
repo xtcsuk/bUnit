@@ -1,0 +1,40 @@
+﻿@using AntDesign
+
+<div Id="modalForm">
+    <Modal Title="Modal example"
+           Visible="true"
+           OnCancel="CloseModal">
+        <Button Type="@ButtonType.Primary" OnClick="IncrementCount">Click me</Button>
+        <p role="status">Current count: @currentCount</p>
+        <Divider></Divider>
+        <Button Type="@ButtonType.Primary" OnClick="CheckTheBox">Check me</Button>
+        <Checkbox @bind-Checked="@_checkedValue">Checkbox</Checkbox>
+    </Modal>
+</div>
+
+@code {
+    [Parameter]
+    public EventCallback OnClose { get; set; }
+
+    private bool _checkedValue = false;
+
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private void CloseModal()
+    {
+        if (OnClose.HasDelegate)
+        {
+            OnClose.InvokeAsync();
+        }
+    }
+
+    private void CheckTheBox()
+    {
+        _checkedValue = !_checkedValue;
+    }
+}

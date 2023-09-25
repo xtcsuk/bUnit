@@ -1,22 +1,32 @@
 ﻿@page "/antdesigncomplexscenarios"
 
 @using AntDesign
+@using Bunit.Demo.Pages.Modals
 
 <h3>AntDesign Complex Scenarios</h3>
 
 <GridRow>
     <GridCol Span="6">
-        <Button Type="@ButtonType.Primary" OnClick="OpenMoreThanOneInstanceModal">
-            > 1 Instance
+        <Button Id="buttonShowModal" Type="@ButtonType.Primary" OnClick="OpenModal">
+            Show Modal
         </Button>
     </GridCol>
-    <GridCol Span="6">col-6</GridCol>
+    <GridCol Span="6">
+        <Button Id="buttonShowPanel" Type="@ButtonType.Primary" OnClick="ShowPanel">Show Panel</Button>
+    </GridCol>
     <GridCol Span="6">col-6</GridCol>
     <GridCol Span="6">col-6</GridCol>
 </GridRow>
 
-@if (_moreThanOneInstanceModal)
+<Divider/>
+
+@if (@_showPanel)
 {
-    <Bunit.Demo.Pages.Modals.MoreThanInstanceModal OnClose="CloseMoreThanOneInstanceModal">
-    </Bunit.Demo.Pages.Modals.MoreThanInstanceModal>
+    <p id="panelShowPanel"><strong>bUnit demo</strong></p>
+}
+
+@if (Showodal)
+{
+    <ModalExample OnClose="CloseModal">
+    </ModalExample>
 }
