@@ -2,20 +2,14 @@
 @using BackOffice.Shared.UI.Notifications.Services;
 @using Bunit.Demo.Models;
 
-<AntContainer />
-
 <Modal Title="Modal example"
        Visible="true"
-       OnOk="ShowSuccessNotification"
        OnCancel="CloseModal">
     <Button Type="@ButtonType.Primary" OnClick="CheckTheBox">Check me</Button>
     <Checkbox Id="checkBoxCheckMe" @bind-Checked="Model.Checked">Checkbox</Checkbox>
 </Modal>
 
 @code {
-
-    [Inject]
-    private IToastService? ToastService { get; set; }
 
     [Parameter]
     public EventCallback OnClose { get; set; }
@@ -41,10 +35,5 @@
     private void CheckTheBox()
     {
         Model.Checked = !Model.Checked;
-    }
-
-    private void ShowSuccessNotification(MouseEventArgs e)
-    {
-        ToastService?.OpenNotification(NotificationType.Success, "Sucess");        
     }
 }
