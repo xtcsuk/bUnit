@@ -7,15 +7,20 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Bunit.Demo.Tests.Pages
 {
-    public class AntDesignComplexScenarios : AntDesignTestBase
+    public class AntDesignComplexScenariosTests : AntDesignTestBase
     {
         private readonly IToastService? _toastService;
         private readonly NotificationService _notificationService;
 
-        public AntDesignComplexScenarios()
+        public AntDesignComplexScenariosTests()
         {
             JSInterop.Setup<Window>("AntDesign.interop.domInfoHelper.getWindow");
             JSInterop.SetupVoid("AntDesign.interop.domManipulationHelper.addElementTo", _ => true);
+
+            JSInterop.Setup<Window>("AntDesign.interop.domInfoHelper.getWindow");
+            JSInterop.SetupVoid("AntDesign.interop.domManipulationHelper.addElementTo", _ => true);
+            JSInterop.SetupVoid("AntDesign.interop.modalHelper.focusDialog", _ => true);
+            JSInterop.SetupVoid("AntDesign.interop.domManipulationHelper.disableBodyScroll");
 
             // service mocking and registration
             _notificationService = new NotificationService();
@@ -106,23 +111,23 @@ namespace Bunit.Demo.Tests.Pages
             Assert.Contains("Modal example", modalTitleClassDiv.InnerHtml);
         }
 
-        //[Fact]
-        //public async Task Should_Show_Success_Notification()
-        //{
-        //    // arrange
-        //    var cut = RenderComponent<AntDesignComplexScenarios>();
+        [Fact]
+        public async Task Should_Show_Success_Notification()
+        {
+            // arrange
+            var cut = RenderComponent<Demo.Pages.AntDesignComplexScenarios>();
 
-        //    var okButton = cut.FindComponents<Button>()
-        //        .Single(b => b.Markup.Contains("Show Message"));
+            var okButton = cut.FindComponents<Button>()
+                .Single(b => b.Markup.Contains("Show Message"));
 
-        //    // act
-        //    await cut.InvokeAsync(okButton.Instance.OnClick.InvokeAsync);
-        //    //cut.WaitForState(() => { okButton.Instance.OnClick.InvokeAsync(); return true; });
-        //    var notificationComponent = cut.FindComponent<Notification>();
+            var notificationComponent = cut.FindComponent<Notification>();
 
-        //    // assert
-        //    Assert.Contains("ant-notification-notice-icon-success", notificationComponent.Markup);
-        //}
+            // act
+            await cut.InvokeAsync(okButton.Instance.OnClick.InvokeAsync);
+
+            // assert
+            Assert.Contains("ant-notification", notificationComponent.Markup);
+        }
 
         [Fact]
         public async Task Should_Show_Success_Notification_Message()

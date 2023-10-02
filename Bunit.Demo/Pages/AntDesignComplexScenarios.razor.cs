@@ -1,4 +1,4 @@
-﻿using BackOffice.Shared.UI.Notifications.Services;
+﻿using AntDesign;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -7,7 +7,7 @@ namespace Bunit.Demo.Pages
     public partial class AntDesignComplexScenarios
     {
         [Inject]
-        public IToastService? ToastService { get; set; }
+        private NotificationService Notification { get; set; } = default!;
 
         public bool Showodal = false;
         private bool _showPanel = false;
@@ -30,7 +30,12 @@ namespace Bunit.Demo.Pages
 
         private async Task ShowMessage()
         {
-            await ToastService!.OpenNotification(AntDesign.NotificationType.Success, "Success");
+            await Notification.Open(new NotificationConfig
+            {
+                NotificationType = NotificationType.Success,
+                Message = "Success",
+                Duration = 1.0
+            });
             _ShowMessage = true;
         }
     }

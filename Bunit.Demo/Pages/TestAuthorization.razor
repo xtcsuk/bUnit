@@ -1,0 +1,13 @@
+﻿@page "/testauthorisation"
+
+<AuthorizeView Roles="TestRole">
+    <Authorized>
+        <p><strong>You are authorized.</strong></p>
+    </Authorized>
+    <Authorizing>
+        <p><strong>Authorizing.</strong></p>
+    </Authorizing>
+    <NotAuthorized>
+        <p><strong>You are not authorized.</strong></p>
+    </NotAuthorized>
+</AuthorizeView>
