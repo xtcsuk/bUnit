@@ -33,7 +33,7 @@ namespace Bunit.Demo.Tests.Pages
         public void Should_Button_Count_Be_As_Expected()
         {
             // arrange
-            const int expectedCount = 2;
+            const int expectedCount = 3;
 
             var cut = base.RenderComponent<Demo.Pages.AntDesignComplexScenarios>();
 
@@ -85,7 +85,7 @@ namespace Bunit.Demo.Tests.Pages
         }
 
         [Fact]
-        public void Should_Modal_Be_InVisible_On_First_Render()
+        public void Should_Modal_Be_NoInVisible_On_First_Render()
         {
             // arrange
             var cut = base.RenderComponent<Demo.Pages.AntDesignComplexScenarios>();
@@ -140,7 +140,8 @@ namespace Bunit.Demo.Tests.Pages
 
             // act
             await cut.InvokeAsync(okButton.Instance.OnClick.InvokeAsync);
-            cut.WaitForElement("#divShowMessage");
+            
+            //cut.WaitForElement("#divShowMessage");  // use this to wait for the element update relying on the result of click and when click is async and not awaited
             var showMessageDiv = cut.Find("#divShowMessage");
 
             // assert
